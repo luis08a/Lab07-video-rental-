@@ -59,7 +59,7 @@
 		<result property='direccion' column='cdir'/>
 		<result property='email' column='cema'/>
 		<result property='vetado' column='cvet'/>    
-		<collection property='rentados' ofType='ItemRentado' resultMap='edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemRentadoMapper.ItemRentadosResult'></collection>
+		<collection property='rentados' ofType='ItemRentado' resultMap='edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemRentadoMapper.ItemRentadoResult'></collection>
 	</resultMap>
 	
 	
