@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemMapper">
+	<resultMap type='Item' id='ItemResult'>
+		<id property='id' column='id' />
+		<result property='nombre' column='nombre' />
+		<result property='fechaLanzamiento' column='fechalanzamiento' />
+		<result property='tarifaxDia' column='tarifaxdia' />
+		<result property='formatoRenta' column='formatorenta' />
+		<result property='genero' column='genero' />
+		<result property='descripcion' column='descripcion' />
+		<association property="tipo" javaType="TipoItem" columnPrefix="TI_"></association>
+	</resultMap>
+</mapper>

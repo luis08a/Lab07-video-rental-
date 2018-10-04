@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ClienteMapper">
+	<select parameterType="map" id="consultarCliente" resultMap="ClienteResult">
+		select
+		    c.nombre as cnom,
+		    c.documento as cdoc,
+		    c.telefono as ctel,
+		    c.direccion as cdir,
+		    c.email as cema,
+		    c.vetado as cvet 
+	    from VI_CLIENTES as c where c.documento=#{idcli};
+	</select>
+	<insert parameterType="map" id="agregarItemRentadoACliente" useGeneratedKeys="true"
+    keyProperty="id">
+  		insert into VI_ITEMRENTADO (CLIENTES_documento,ITEMS_id,fechainiciorenta,fechafinrenta)
+  		values (#{idc},#{idi},#{fini},#{ffin})
+	</insert>
+	<select parameterType="map" id="consultarClientes" resultMap="ClienteResult">
+		select
+    
+    c.nombre as cnom,
+    c.documento as cdoc,
+    c.telefono as ctel,
+    c.direccion as cdir,
+    c.email as cema,
+    c.vetado as cvet,
+    
+    ir.id  as irid,
+    ir.fechainiciorenta as irfi,
+    ir.fechafinrenta as irff,
+    
+    i.id as iid,
+    i.nombre as inom,
+    i.descripcion as ides,
+    i.fechalanzamiento as ifl,
+    i.tarifaxdia  as itxd,
+    i.formatorenta  as ifr,
+    i.genero  as ig,     
+    ti.id  as tiid,
+    ti.descripcion  as tides 
+
+    
+    FROM VI_CLIENTES as c 
+    left join VI_ITEMRENTADO as ir on c.documento=ir.CLIENTES_documento 
+    left join VI_ITEMS as i on ir.ITEMS_id=i.id 
+    left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id
+	</select>
+
+	<resultMap type='Cliente' id='ClienteResult'>
+		<id property='documento' column='cdoc' />
+		<result property='nombre' column='cnom' />
+		<result property='telefono' column='ctel'/>  
+		<result property='direccion' column='cdir'/>
+		<result property='email' column='cema'/>
+		<result property='vetado' column='cvet'/>    
+		<collection property='rentados' ofType='ItemRentado' resultMap='ItemRentadoResult'></collection>
+	</resultMap>
+	<resultMap type='Item' id='ItemResult'>
+		<id property='id' column='iid' />
+		<result property='nombre' column='inom' />
+		<result property='fechaLanzamiento' column='ifl' />
+		<result property='tarifaxDia' column='itxd' />
+		<result property='formatoRenta' column='ifr' />
+		<result property='genero' column='ig' />
+		<result property='descripcion' column='ides' />
+		<association property="tipo" javaType="TipoItem"></association>
+	</resultMap>
+	<resultMap type='ItemRentado' id='ItemRentadoResult'>
+		<id property='id' column='irid' />
+		<result property='fechainiciorenta' column='irfi'/>  
+		<result property='fechafinrenta' column='irff'/>    
+		<association property="item" javaType="Item"></association>
+	</resultMap>
+	<resultMap type='TipoItem' id='TipoItemResult'>
+		<id property='id' column='tiid' />
+		<result property='descripcion' column='tides' />
+	</resultMap>
+</mapper>
