@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Param;
  * @author 2106913
  */
 public interface ClienteMapper {
+	
     
 	public Cliente consultarCliente(@Param("idcli") int id);
     
