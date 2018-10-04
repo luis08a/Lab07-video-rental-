@@ -86,7 +86,7 @@ public class MyBatisExample {
         System.out.println(cliente.toString());
         //cm.agregarItemRentadoACliente(9843, 1, new Date(3918,03,17), new Date(3918,03,18)); 
          */
-        ItemMapper im =sqlss.getMapper(ClienteMapper.class);
+        ItemMapper im =sqlss.getMapper(ItemMapper.class);
         /*
         ItemMapper im=sqlss.getMapper(ItemMapper.class);
         TipoItem ti=new TipoItem(1,"Video");

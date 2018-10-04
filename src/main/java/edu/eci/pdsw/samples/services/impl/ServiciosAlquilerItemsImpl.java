@@ -4,8 +4,6 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import edu.eci.pdsw.sampleprj.dao.ClienteDAO;
 import edu.eci.pdsw.sampleprj.dao.ItemDAO;
-import edu.eci.pdsw.sampleprj.dao.PersistenceException;
-
 import edu.eci.pdsw.samples.entities.Cliente;
 import edu.eci.pdsw.samples.entities.Item;
 import edu.eci.pdsw.samples.entities.ItemRentado;
@@ -15,8 +13,10 @@ import edu.eci.pdsw.samples.services.ServiciosAlquiler;
 import java.sql.Date;
 import java.util.List;
 
+import org.apache.ibatis.exceptions.PersistenceException;
+
 @Singleton
-public class ServiciosAlquilerImpl implements ServiciosAlquiler {
+public class ServiciosAlquilerItemsImpl implements ServiciosAlquiler {
 
    @Inject
    private ItemDAO itemDAO;
