@@ -5,12 +5,13 @@ import com.google.inject.Singleton;
 
 import edu.eci.pdsw.sampleprj.dao.ClienteDAO;
 import edu.eci.pdsw.sampleprj.dao.ItemDAO;
-import edu.eci.pdsw.sampleprj.dao.PersistenceException;
 import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ClienteMapper;
 import edu.eci.pdsw.samples.entities.Item;
 import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemMapper;
 import edu.eci.pdsw.samples.entities.TipoItem;
 import java.sql.SQLException;
+
+import org.apache.ibatis.exceptions.PersistenceException;
 
 public class MyBATISClienteDAO implements ClienteDAO{
 
@@ -20,7 +21,7 @@ public class MyBATISClienteDAO implements ClienteDAO{
   @Override
   public void save(Item it) throws PersistenceException{
   try{
-      clienteMapper.insertarItem(it);
+      clienteMapper.insertarCliente(it);
   }
   catch(org.apache.ibatis.exceptions.PersistenceException e){
       throw new PersistenceException("Error al registrar el cliente "+it.toString(),e);
@@ -31,7 +32,7 @@ public class MyBATISClienteDAO implements ClienteDAO{
   @Override
   public Item load(int id) throws PersistenceException {
   try{
-      return itemMapper.consultarItem(id);
+	  return clienteMapper.consultarCliente(id);
   }
   catch(org.apache.ibatis.exceptions.PersistenceException e){
       throw new PersistenceException("Error al consultar el item "+id,e);
