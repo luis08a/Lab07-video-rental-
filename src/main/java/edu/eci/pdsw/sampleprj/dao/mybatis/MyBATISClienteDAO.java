@@ -1,7 +1,9 @@
-ackage edu.eci.pdsw.sampleprj.dao.mybatis;
+package edu.eci.pdsw.sampleprj.dao.mybatis;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+
+import edu.eci.pdsw.sampleprj.dao.ClienteDAO;
 import edu.eci.pdsw.sampleprj.dao.ItemDAO;
 import edu.eci.pdsw.sampleprj.dao.PersistenceException;
 import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ClienteMapper;
@@ -10,15 +12,15 @@ import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemMapper;
 import edu.eci.pdsw.samples.entities.TipoItem;
 import java.sql.SQLException;
 
-public class MyBATISClienteDAO implements ItemDAO{
+public class MyBATISClienteDAO implements ClienteDAO{
 
   @Inject
-  private ItemMapper itemMapper;    
+  private ClienteMapper clienteMapper;    
 
   @Override
   public void save(Item it) throws PersistenceException{
   try{
-      itemMapper.insertarItem(it);
+      clienteMapper.insertarItem(it);
   }
   catch(org.apache.ibatis.exceptions.PersistenceException e){
       throw new PersistenceException("Error al registrar el cliente "+it.toString(),e);
