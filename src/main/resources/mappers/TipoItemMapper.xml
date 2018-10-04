@@ -5,7 +5,7 @@
   
 <mapper namespace="edu.eci.pdsw.sampleprj.dao.mybatis.mappers.TipoItemMapper">
 	<resultMap type='TipoItem' id='TipoItemResult'>
-		<id property='id' column='id' />
-		<result property='descripcion' column='descripcion' />
+		<id property='id' column='tiid' />
+		<result property='descripcion' column='tides' />
 	</resultMap>
 </mapper>

@@ -14,11 +14,13 @@
 		    c.vetado as cvet 
 	    from VI_CLIENTES as c where c.documento=#{idcli};
 	</select>
+	
 	<insert parameterType="map" id="agregarItemRentadoACliente" useGeneratedKeys="true"
     keyProperty="id">
   		insert into VI_ITEMRENTADO (CLIENTES_documento,ITEMS_id,fechainiciorenta,fechafinrenta) 
   		values (#{idc},#{idi},#{fini},#{ffin})
 	</insert>
+	
 	<select parameterType="map" id="consultarClientes" resultMap="ClienteResult">
 		select
     
@@ -57,26 +59,8 @@
 		<result property='direccion' column='cdir'/>
 		<result property='email' column='cema'/>
 		<result property='vetado' column='cvet'/>    
-		<collection property='rentados' ofType='ItemRentado' resultMap='ItemRentadoResult'></collection>
+		<collection property='rentados' ofType='ItemRentado' resultMap='edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemRentadoMapper.ItemRentadosResult'></collection>
 	</resultMap>
-	<resultMap type='Item' id='ItemResult'>
-		<id property='id' column='iid' />
-		<result property='nombre' column='inom' />
-		<result property='fechaLanzamiento' column='ifl' />
-		<result property='tarifaxDia' column='itxd' />
-		<result property='formatoRenta' column='ifr' />
-		<result property='genero' column='ig' />
-		<result property='descripcion' column='ides' />
-		<association property="tipo" javaType="TipoItem"></association>
-	</resultMap>
-	<resultMap type='ItemRentado' id='ItemRentadoResult'>
-		<id property='id' column='irid' />
-		<result property='fechainiciorenta' column='irfi'/>  
-		<result property='fechafinrenta' column='irff'/>    
-		<association property="item" javaType="Item"></association>
-	</resultMap>
-	<resultMap type='TipoItem' id='TipoItemResult'>
-		<id property='id' column='tiid' />
-		<result property='descripcion' column='tides' />
-	</resultMap>
+	
+	
 </mapper>

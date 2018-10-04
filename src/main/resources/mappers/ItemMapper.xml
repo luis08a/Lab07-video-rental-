@@ -10,14 +10,36 @@
   		values (#{item.id},#{item.nombre},#{item.descripcion},#{item.fechaLanzamiento},#{item.tarifaxDia},#{item.formatoRenta},#{item.genero},#{item.tipo.id})
 	</insert>
 	
+	<select parameterType="map" id="consultarItem" resultMap="ItemResult">
+		select
+		    i.nombre as inom,
+		    i.descripcion as ides,
+		    i.fechaLanzamiento as ifl,
+		    i.tarifaxDia as itxd,
+		    i.formatoRenta as ifr,
+		    i.Genero,
+	    from VI_ITEMS as i where i.nombre=#{idit};
+	</select>
+	
+	<select parameterType="map" id="consultarItems" resultMap="ItemResult">
+		select
+		    i.nombre as inom,
+		    i.descripcion as ides,
+		    i.fechaLanzamiento as ifl,
+		    i.tarifaxDia as itxd,
+		    i.formatoRenta as ifr,
+		    i.Genero,
+	    from VI_ITEMS;
+	</select>	
+	
 	<resultMap type='Item' id='ItemResult'>
-		<id property='id' column='id' />
-		<result property='nombre' column='nombre' />
-		<result property='fechaLanzamiento' column='fechalanzamiento' />
-		<result property='tarifaxDia' column='tarifaxdia' />
-		<result property='formatoRenta' column='formatorenta' />
-		<result property='genero' column='genero' />
-		<result property='descripcion' column='descripcion' />
-		<association property="tipo" javaType="TipoItem" columnPrefix="TI_"></association>
+		<id property='id' column='iid' />
+		<result property='nombre' column='inom' />
+		<result property='fechaLanzamiento' column='ifl' />
+		<result property='tarifaxDia' column='itxd' />
+		<result property='formatoRenta' column='ifr' />
+		<result property='genero' column='ig' />
+		<result property='descripcion' column='ides' />
+		<association property="tipo" javaType="TipoItem"  resultMap='edu.eci.pdsw.sampleprj.dao.mybatis.mappers.TipoItemMapper.TipoItemResult'></association>
 	</resultMap>
 </mapper>
