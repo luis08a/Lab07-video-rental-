@@ -31,7 +31,10 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ClienteMapper;
+import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemMapper;
 import edu.eci.pdsw.samples.entities.Cliente;
+import edu.eci.pdsw.samples.entities.Item;
+import edu.eci.pdsw.samples.entities.TipoItem;
 
 /**
  *
@@ -74,17 +77,21 @@ public class MyBatisExample {
         //ClienteMapper cm=sqlss.getMapper(ClienteMapper.class)
         //cm...
         ClienteMapper cm=sqlss.getMapper(ClienteMapper.class);
-        List<Cliente> cc=cm.consultarClientes();
+        /*List<Cliente> cc=cm.consultarClientes();
         for(Cliente c:cc) {
         	System.out.println(c.toString());
         }
         System.out.println("--------------------------");
-        Cliente cliente=cm.consultarCliente(22);
+        Cliente cliente=cm.consultarCliente(9843);
         System.out.println(cliente.toString());
-        //cm.agregarItemRentadoACliente(22, 13, new Date(3918,03,17), new Date(3318,03,17));
+        //cm.agregarItemRentadoACliente(9843, 1, new Date(3918,03,17), new Date(3918,03,18));
+         * 
+         */
+        ItemMapper im=sqlss.getMapper(ItemMapper.class);
+        TipoItem ti=new TipoItem(1,"Video");
+        Item i=new Item(ti,2137559,"El cienpies humano","personas anidadas",new Date(2009,8,30),1000,"DVD","familiar");
+        im.insertarItem(i);
         sqlss.commit();
-        
-        
         sqlss.close();
 
         
