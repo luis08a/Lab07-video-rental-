@@ -4,32 +4,32 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemMapper">
-	<insert parameterType="map" id="insertarItem" useGeneratedKeys="true"
-    keyProperty="id">
+	<insert parameterType="map" id="insertarItem" useGeneratedKeys="true" keyProperty="id">
   		insert into VI_ITEMS (id,nombre,descripcion,fechalanzamiento,tarifaxdia,formatorenta,genero,TIPOITEM_id) 
   		values (#{item.id},#{item.nombre},#{item.descripcion},#{item.fechaLanzamiento},#{item.tarifaxDia},#{item.formatoRenta},#{item.genero},#{item.tipo.id})
 	</insert>
-	
 	<select parameterType="map" id="consultarItem" resultMap="ItemResult">
 		select
+			i.id as iid,
 		    i.nombre as inom,
 		    i.descripcion as ides,
-		    i.fechaLanzamiento as ifl,
-		    i.tarifaxDia as itxd,
-		    i.formatoRenta as ifr,
-		    i.Genero,
-	    from VI_ITEMS as i where i.nombre=#{idit};
+		    i.fechalanzamiento as ifl,
+		    i.tarifaxdia as itxd,
+		    i.formatorenta as ifr,
+		    i.genero as ig
+	    from VI_ITEMS as i where i.id= #{idit};
 	</select>
 	
 	<select parameterType="map" id="consultarItems" resultMap="ItemResult">
 		select
+			i.id as iid,
 		    i.nombre as inom,
 		    i.descripcion as ides,
 		    i.fechaLanzamiento as ifl,
 		    i.tarifaxDia as itxd,
 		    i.formatoRenta as ifr,
-		    i.Genero,
-	    from VI_ITEMS;
+		    i.genero as ig
+	    from VI_ITEMS as i;
 	</select>	
 	
 	<resultMap type='Item' id='ItemResult'>
@@ -40,6 +40,6 @@
 		<result property='formatoRenta' column='ifr' />
 		<result property='genero' column='ig' />
 		<result property='descripcion' column='ides' />
-		<association property="tipo" javaType="TipoItem"  resultMap='edu.eci.pdsw.sampleprj.dao.mybatis.mappers.TipoItemMapper.TipoItemResult'></association>
+		<association property="tipo" javaType="TipoItem" resultMap='edu.eci.pdsw.sampleprj.dao.mybatis.mappers.TipoItemMapper.TipoItemResult'></association>
 	</resultMap>
 </mapper>

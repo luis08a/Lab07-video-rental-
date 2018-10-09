@@ -76,8 +76,8 @@ public class MyBatisExample {
         //Crear el mapper y usarlo: 
         //ClienteMapper cm=sqlss.getMapper(ClienteMapper.class)
         //cm...
-        //ClienteMapper cm=sqlss.getMapper(ClienteMapper.class);
-        /*List<Cliente> cc=cm.consultarClientes();
+        ClienteMapper cm=sqlss.getMapper(ClienteMapper.class);
+        List<Cliente> cc=cm.consultarClientes();
         for(Cliente c:cc) {
         	System.out.println(c.toString());
         }
@@ -85,7 +85,7 @@ public class MyBatisExample {
         Cliente cliente=cm.consultarCliente(9843);
         System.out.println(cliente.toString());
         //cm.agregarItemRentadoACliente(9843, 1, new Date(3918,03,17), new Date(3918,03,18)); 
-         */
+        
         ItemMapper im =sqlss.getMapper(ItemMapper.class);
         /*
         ItemMapper im=sqlss.getMapper(ItemMapper.class);
