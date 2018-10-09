@@ -29,27 +29,9 @@
     c.telefono as ctel,
     c.direccion as cdir,
     c.email as cema,
-    c.vetado as cvet,
+    c.vetado as cvet
     
-    ir.id  as irid,
-    ir.fechainiciorenta as irfi,
-    ir.fechafinrenta as irff,
-    
-    i.id as iid,
-    i.nombre as inom,
-    i.descripcion as ides,
-    i.fechalanzamiento as ifl,
-    i.tarifaxdia  as itxd,
-    i.formatorenta  as ifr,
-    i.genero  as ig,     
-    ti.id  as tiid,
-    ti.descripcion  as tides 
-
-    
-    FROM VI_CLIENTES as c 
-    left join VI_ITEMRENTADO as ir on c.documento=ir.CLIENTES_documento 
-    left join VI_ITEMS as i on ir.ITEMS_id=i.id 
-    left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id
+    FROM VI_CLIENTES as c ;
 	</select>
 
 	<resultMap type='Cliente' id='ClienteResult'>
