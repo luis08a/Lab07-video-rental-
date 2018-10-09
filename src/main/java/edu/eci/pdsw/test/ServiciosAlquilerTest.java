@@ -1,3 +1,4 @@
+/**
 package edu.eci.pdsw.test;
 
 import java.util.ArrayList;
@@ -50,3 +51,4 @@ public class ServiciosAlquilerTest {
         });
     }
 }
+**/
