@@ -1,5 +1,7 @@
 package edu.eci.pdsw.sampleprj.dao.mybatis;
 
+import java.util.List;
+
 import org.apache.ibatis.exceptions.PersistenceException;
 
 import com.google.inject.Inject;
@@ -29,6 +31,12 @@ public class MyBATISTipoItemDAO implements TipoItemDAO{
 		}catch(org.apache.ibatis.exceptions.PersistenceException e){
 			throw new PersistenceException("Error al consultar el item "+id,e);
 		}
+	}
+
+	@Override
+	public List<TipoItem> loadAll() throws PersistenceException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
