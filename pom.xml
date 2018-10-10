@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>samples_mybatis-guice</groupId>
-    <artifactId>MyBATIS-Guice-DAO-VideorentalServicesLayer</artifactId>
+    <artifactId>Lab07-video-rental-</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>

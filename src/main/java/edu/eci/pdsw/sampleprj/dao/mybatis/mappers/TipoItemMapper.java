@@ -10,9 +10,8 @@ import org.apache.ibatis.annotations.Param;
  * @author 2106913
  */
 public interface TipoItemMapper {
-    
+	public List<TipoItem> consultarTiposItems();
 	public void insertarTipoItem(TipoItem ti);
-
 	public TipoItem consultarTipoItem(int id);
 
 }

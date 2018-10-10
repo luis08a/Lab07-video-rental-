@@ -69,44 +69,33 @@ public class MyBatisExample {
      */
     public static void main(String args[]) throws SQLException {
         SqlSessionFactory sessionfact = getSqlSessionFactory();
-
         SqlSession sqlss = sessionfact.openSession();
-
-        
-        //Crear el mapper y usarlo: 
-        //ClienteMapper cm=sqlss.getMapper(ClienteMapper.class)
-        //cm...
-        /*
         ClienteMapper cm=sqlss.getMapper(ClienteMapper.class);
+        ItemMapper im=sqlss.getMapper(ItemMapper.class);
         List<Cliente> cc=cm.consultarClientes();
         for(Cliente c:cc) {
         	System.out.println(c.toString());
         }
         System.out.println("--------------------------");
-        Cliente cliente=cm.consultarCliente(9843);
+        /*Cliente cliente=cm.consultarCliente(12345);
         System.out.println(cliente.toString());
-        */
-        //cm.agregarItemRentadoACliente(9843, 1, new Date(3918,03,17), new Date(3918,03,18)); 
-        
-        //ItemMapper im =sqlss.getMapper(ItemMapper.class);
-        /*
-        ItemMapper im=sqlss.getMapper(ItemMapper.class);
+        //cm.agregarItemRentadoACliente(12345, 2137559, new Date(2018,03,15), new Date(2018,03,17));
         TipoItem ti=new TipoItem(1,"Video");
-        Item i=new Item(ti,2137559,"El cienpies humano","personas anidadas",new Date(2009,8,30),1000,"DVD","familiar");
-        im.insertarItem(i);
-        */
-        /*
-        List<Item> items=im.consultarItems();
-        for(Item i:items) {
-        	System.out.println(i.toString());
+        Item i=new Item(ti,777,"El cienpies humano","personas anidadas",new Date(2009,8,30),1000,"DVD","familiar");
+        //im.insertarItem(i);
+        System.out.println("--------------------------");
+        i=im.consultarItem(777);
+        System.out.println(i.toString());
+        System.out.println("--------------------------");
+        List<Item> ii=im.consultarItems();
+        for(Item itm:ii) {
+        	System.out.println(itm.toString());
         }
         System.out.println("--------------------------");
-        Item item=im.consultarItem(2137559);
-        System.out.println(item.toString()); 
-        
+        */
         sqlss.commit();
         sqlss.close();
-        */
-        
     }
+
+
 }

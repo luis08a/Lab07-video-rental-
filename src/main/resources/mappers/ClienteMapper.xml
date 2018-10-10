@@ -6,43 +6,76 @@
 <mapper namespace="edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ClienteMapper">
 	<select parameterType="map" id="consultarCliente" resultMap="ClienteResult">
 		select
-		    c.nombre as cnom,
-		    c.documento as cdoc,
-		    c.telefono as ctel,
-		    c.direccion as cdir,
-		    c.email as cema,
-		    c.vetado as cvet 
-	    from VI_CLIENTES as c where c.documento=#{idcli};
+		    c.nombre as CLIENTE_nombre,
+		    c.documento as CLIENTE_documento,
+		    c.telefono as CLIENTE_telefono,
+		    c.direccion as CLIENTE_direccion,
+		    c.email as CLIENTE_email,
+		    c.vetado as CLIENTE_vetado,
+		    
+		    ir.id as ITEMRENTADO_id,
+		    ir.fechainiciorenta as ITEMRENTADO_fechainiciorenta,
+		    ir.fechafinrenta as ITEMRENTADO_fechafinrenta,
+		    
+		    i.id as ITEM_id,
+		    i.nombre as ITEM_nombre,
+		    i.descripcion as ITEM_descripcion,
+		    i.fechalanzamiento as ITEM_fechalanzamiento,
+		    i.tarifaxdia as ITEM_tarifaxdia,
+		    i.formatorenta as ITEM_formatorenta,
+		    i.genero as ITEM_genero,
+		            
+		    ti.id as TIPOITEM_id,
+		    ti.descripcion as TIPOITEM_descripcion
+	   FROM VI_CLIENTES as c 
+	   left join VI_ITEMRENTADO as ir on c.documento=ir.CLIENTES_documento 
+	   left join VI_ITEMS as i on ir.ITEMS_id=i.id 
+	   left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id 
+		where c.documento=#{idcli};
 	</select>
-	
 	<insert parameterType="map" id="agregarItemRentadoACliente" useGeneratedKeys="true"
     keyProperty="id">
-  		insert into VI_ITEMRENTADO (CLIENTES_documento,ITEMS_id,fechainiciorenta,fechafinrenta) 
+  		insert into VI_ITEMRENTADO (CLIENTES_documento,ITEMS_id,fechainiciorenta,fechafinrenta)
   		values (#{idc},#{idi},#{fini},#{ffin})
 	</insert>
 	
 	<select parameterType="map" id="consultarClientes" resultMap="ClienteResult">
 		select
-    
-    c.nombre as cnom,
-    c.documento as cdoc,
-    c.telefono as ctel,
-    c.direccion as cdir,
-    c.email as cema,
-    c.vetado as cvet
-    
-    FROM VI_CLIENTES as c ;
+		    c.nombre as CLIENTE_nombre,
+		    c.documento as CLIENTE_documento,
+		    c.telefono as CLIENTE_telefono,
+		    c.direccion as CLIENTE_direccion,
+		    c.email as CLIENTE_email,
+		    c.vetado as CLIENTE_vetado,
+		    
+		    ir.id as ITEMRENTADO_id,
+		    ir.fechainiciorenta as ITEMRENTADO_fechainiciorenta,
+		    ir.fechafinrenta as ITEMRENTADO_fechafinrenta,
+		    
+		    i.id as ITEM_id,
+		    i.nombre as ITEM_nombre,
+		    i.descripcion as ITEM_descripcion,
+		    i.fechalanzamiento as ITEM_fechalanzamiento,
+		    i.tarifaxdia as ITEM_tarifaxdia,
+		    i.formatorenta as ITEM_formatorenta,
+		    i.genero as ITEM_genero,
+		            
+		    ti.id as TIPOITEM_id,
+		    ti.descripcion as TIPOITEM_descripcion
+	   FROM VI_CLIENTES as c 
+	   left join VI_ITEMRENTADO as ir on c.documento=ir.CLIENTES_documento 
+	   left join VI_ITEMS as i on ir.ITEMS_id=i.id 
+	   left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id ;
 	</select>
 
 	<resultMap type='Cliente' id='ClienteResult'>
-		<id property='documento' column='cdoc' />
-		<result property='nombre' column='cnom' />
-		<result property='telefono' column='ctel'/>  
-		<result property='direccion' column='cdir'/>
-		<result property='email' column='cema'/>
-		<result property='vetado' column='cvet'/>    
-		<collection property='rentados' ofType='ItemRentado' resultMap='edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemRentadoMapper.ItemRentadoResult'></collection>
+		<id property='documento' column='CLIENTE_documento' />
+		<result property='nombre' column='CLIENTE_nombre' />
+		<result property='telefono' column='CLIENTE_telefono' />
+		<result property='direccion' column='CLIENTE_direccion' />
+		<result property='email' column='CLIENTE_email' />
+		<result property='vetado' column='CLIENTE_vetado' />
+		<collection property='rentados' ofType='ItemRentado' resultMap='edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemRentadoMapper.ItemRentadoResult'/>
 	</resultMap>
-	
 	
 </mapper>

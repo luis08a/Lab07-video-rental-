@@ -5,11 +5,11 @@
   
 <mapper namespace="edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemRentadoMapper">
 
-	<resultMap type='ItemRentado' id='ItemRentadoResult'>
-		<id property='id' column='irid' />
-		<result property='fechainiciorenta' column='irfi'/>  
-		<result property='fechafinrenta' column='irff'/>    
-		<association property="item" javaType="Item" resultMap='edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemMapper.ItemResult'></association>
-	</resultMap>
 	
+	<resultMap type='ItemRentado' id='ItemRentadoResult'>
+		<id property='id' column='ITEMRENTADO_id' />
+		<result property='fechainiciorenta' column='ITEMRENTADO_fechainiciorenta' />
+		<result property='fechafinrenta' column='ITEMRENTADO_fechafinrenta' />
+		<association property='item' javaType='Item' resultMap='edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemMapper.ItemResult'/>
+	</resultMap>
 </mapper>
