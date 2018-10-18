@@ -13,7 +13,7 @@ public interface ItemDAO {
 
    public Item load(int id) throws PersistenceException;
 
-   public int tarifaxDia(int itemId) throws PersistenceException;
+   public long tarifaxDia(int itemId) throws PersistenceException;
 
    public long consultarCostoAlquiler(int iditem, int numdias) throws PersistenceException;
 
@@ -22,5 +22,7 @@ public interface ItemDAO {
 	public List<Item> consultarItemsDisponibles() throws PersistenceException;
 	
 	public long consultarMultaAlquiler(int iditem, Date fechaDevolucion) throws PersistenceException;
+
+	public void updateTarifaItem(int id, long tarifa);
 
 }

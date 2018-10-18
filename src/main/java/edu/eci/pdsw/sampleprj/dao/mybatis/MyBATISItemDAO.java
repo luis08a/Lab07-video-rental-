@@ -39,14 +39,21 @@ public class MyBATISItemDAO implements ItemDAO{
 	}
 
 	@Override
-	public int tarifaxDia(int itemId) throws PersistenceException {
-		return 0;
+	public long tarifaxDia(int itemId) throws PersistenceException {
+		try {
+			return load(itemId).getTarifaxDia();
+		}catch(org.apache.ibatis.exceptions.PersistenceException e){
+			throw new PersistenceException("Error al consultar la tarifa por dia del item "+itemId,e);
+		}
 	}
 
 	@Override
-	public long consultarCostoAlquiler(int iditem, int numdias) throws PersistenceException {
-		// TODO Auto-generated method stub
-		return 0;
+	public long consultarCostoAlquiler(int idItem, int numdias) throws PersistenceException {
+		try {
+			return itemMapper.consultarItem(idItem).getTarifaxDia()*numdias;
+		}catch(org.apache.ibatis.exceptions.PersistenceException e){
+			throw new PersistenceException("Error al consultar el costo de alquilar el item "+idItem+" por "+numdias+"dias",e);
+		}
 	}
 
 	@Override
@@ -57,13 +64,24 @@ public class MyBATISItemDAO implements ItemDAO{
 
 	@Override
 	public List<Item> consultarItemsDisponibles() throws PersistenceException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return itemMapper.consultarItems();
+		} catch(org.apache.ibatis.exceptions.PersistenceException e){
+			throw new PersistenceException("Error al consultar los items ",e);
+		}
 	}
 
 	@Override
 	public long consultarMultaAlquiler(int iditem, Date fechaDevolucion) throws PersistenceException {
-		// TODO Auto-generated method stub
-		return 0;
+		return itemMapper.consultarFechafinReta(iditem);
+	}
+
+	@Override
+	public void updateTarifaItem(int id, long tarifa) throws PersistenceException {
+		try {
+			itemMapper.actualizarTarifaItem(id, tarifa);
+		} catch(org.apache.ibatis.exceptions.PersistenceException e){
+			throw new PersistenceException("Error al actualizar tarifa a "+tarifa,e);
+		}	
 	}
 }

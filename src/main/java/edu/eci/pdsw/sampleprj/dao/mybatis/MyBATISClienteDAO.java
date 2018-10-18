@@ -35,7 +35,7 @@ public class MyBATISClienteDAO implements ClienteDAO{
 	@Override
 	public Cliente load(long id) throws PersistenceException {
 		try{
-			return clienteMapper.consultarCliente((int)id);
+			return clienteMapper.consultarCliente(id);
 		}catch(org.apache.ibatis.exceptions.PersistenceException e){
 			throw new PersistenceException("Error al consultar el item "+id,e);
 		}

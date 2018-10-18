@@ -29,7 +29,7 @@ public class ServiciosAlquilerItemsImpl implements ServiciosAlquiler {
    @Override
    public int valorMultaRetrasoxDia(int itemId) throws ExcepcionServiciosAlquiler {
 	   try {
-		return itemDAO.tarifaxDia(itemId);
+		return (int)itemDAO.tarifaxDia(itemId);
 	} catch (PersistenceException e) {
 		throw new ExcepcionServiciosAlquiler("Error al cosultar item "+itemId,e);
 	}
@@ -133,7 +133,7 @@ public class ServiciosAlquilerItemsImpl implements ServiciosAlquiler {
    @Override
    public void actualizarTarifaItem(int id, long tarifa) throws ExcepcionServiciosAlquiler {
 	   try {
-		itemDAO.setTarifaItem(id,tarifa);
+		itemDAO.updateTarifaItem(id,tarifa);
 	} catch (PersistenceException e) {
 		throw new ExcepcionServiciosAlquiler("");
 	}
