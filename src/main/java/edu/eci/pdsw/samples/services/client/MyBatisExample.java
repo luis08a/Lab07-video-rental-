@@ -34,6 +34,7 @@ import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ClienteMapper;
 import edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ItemMapper;
 import edu.eci.pdsw.samples.entities.Cliente;
 import edu.eci.pdsw.samples.entities.Item;
+import edu.eci.pdsw.samples.entities.ItemRentado;
 import edu.eci.pdsw.samples.entities.TipoItem;
 
 /**
@@ -71,19 +72,27 @@ public class MyBatisExample {
         SqlSessionFactory sessionfact = getSqlSessionFactory();
         SqlSession sqlss = sessionfact.openSession();
         ClienteMapper cm=sqlss.getMapper(ClienteMapper.class);
-        ItemMapper im=sqlss.getMapper(ItemMapper.class);
-        List<Cliente> cc=cm.consultarClientes();
-        for(Cliente c:cc) {
-        	System.out.println(c.toString());
-        }
+        //List<Cliente> cc=cm.consultarClientes();
+        //for(Cliente c:cc) {
+        //	System.out.println(c.toString());
+        //}
+        //System.out.println("--------------------------");
+        //Cliente cliente=cm.consultarCliente(12345);
+        //System.out.println(cliente.toString());
+        //cm.agregarItemRentadoACliente(idc, idi, fechainicio, fechafin);
+        //List<ItemRentado> itsr=cm.consultarItemsCliente(12345).getRentados();
+        //for(ItemRentado ir: itsr) {
+        //	System.out.println(ir.toString());
+        //}
+        Cliente ct=new Cliente("gggg", 666, "31313","momo", "gggg@momo.index");
+        cm.insertarCliente(ct);
         System.out.println("--------------------------");
-        /*Cliente cliente=cm.consultarCliente(12345);
-        System.out.println(cliente.toString());
+        //cm.vetar(12345, estado);
         //cm.agregarItemRentadoACliente(12345, 2137559, new Date(2018,03,15), new Date(2018,03,17));
-        TipoItem ti=new TipoItem(1,"Video");
+        /*TipoItem ti=new TipoItem(1,"Video");
         Item i=new Item(ti,777,"El cienpies humano","personas anidadas",new Date(2009,8,30),1000,"DVD","familiar");
         //im.insertarItem(i);
-        System.out.println("--------------------------");
+        
         i=im.consultarItem(777);
         System.out.println(i.toString());
         System.out.println("--------------------------");

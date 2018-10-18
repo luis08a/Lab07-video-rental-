@@ -4,6 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ClienteMapper">
+	<insert parameterType="map" id="insertarCliente">
+  		insert into VI_CLIENTES (documento, nombre,telefono,direccion,email,vetado)
+  		values (666,#{ct.nombre},#{ct.telefono},#{ct.direccion},#(ct.email),#(ct.vetado));
+	</insert>
 	<select parameterType="map" id="consultarCliente" resultMap="ClienteResult">
 		select
 		    c.nombre as CLIENTE_nombre,
@@ -67,7 +71,38 @@
 	   left join VI_ITEMS as i on ir.ITEMS_id=i.id 
 	   left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id ;
 	</select>
-
+    <update parameterType="map" id="vetar">
+    	UPDATE VI_CLIENTES SET vetado=#(estado) WHERE documento=#(doc)
+    </update>
+    <select parameterType="map" id="consultarItemsCliente" resultMap="ClienteResult">
+		select
+		    c.nombre as CLIENTE_nombre,
+		    c.documento as CLIENTE_documento,
+		    c.telefono as CLIENTE_telefono,
+		    c.direccion as CLIENTE_direccion,
+		    c.email as CLIENTE_email,
+		    c.vetado as CLIENTE_vetado,
+		    
+		    ir.id as ITEMRENTADO_id,
+		    ir.fechainiciorenta as ITEMRENTADO_fechainiciorenta,
+		    ir.fechafinrenta as ITEMRENTADO_fechafinrenta,
+		    
+		    i.id as ITEM_id,
+		    i.nombre as ITEM_nombre,
+		    i.descripcion as ITEM_descripcion,
+		    i.fechalanzamiento as ITEM_fechalanzamiento,
+		    i.tarifaxdia as ITEM_tarifaxdia,
+		    i.formatorenta as ITEM_formatorenta,
+		    i.genero as ITEM_genero,
+		            
+		    ti.id as TIPOITEM_id,
+		    ti.descripcion as TIPOITEM_descripcion
+	   FROM VI_CLIENTES as c 
+	   left join VI_ITEMRENTADO as ir on c.documento=ir.CLIENTES_documento 
+	   left join VI_ITEMS as i on ir.ITEMS_id=i.id 
+	   left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id 
+		where c.documento=#{doc};
+	</select>
 	<resultMap type='Cliente' id='ClienteResult'>
 		<id property='documento' column='CLIENTE_documento' />
 		<result property='nombre' column='CLIENTE_nombre' />

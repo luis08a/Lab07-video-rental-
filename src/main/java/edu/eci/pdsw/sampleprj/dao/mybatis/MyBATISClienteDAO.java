@@ -25,44 +25,34 @@ public class MyBATISClienteDAO implements ClienteDAO{
 	
 	@Override
 	public void save(Cliente ct) throws PersistenceException{
-		try{
 		clienteMapper.insertarCliente(ct);
-		}catch(org.apache.ibatis.exceptions.PersistenceException e){
-			throw new PersistenceException("Error al registrar el cliente "+ct.toString(),e);
-		}
 	}
 	
 	@Override
 	public Cliente load(long id) throws PersistenceException {
-		try{
-			return clienteMapper.consultarCliente((int)id);
-		}catch(org.apache.ibatis.exceptions.PersistenceException e){
-			throw new PersistenceException("Error al consultar el item "+id,e);
-		}
+		return clienteMapper.consultarCliente((int)id);
 	}
 
 	@Override
 	public void vetar(long docu, boolean estado) throws PersistenceException {
-		// TODO Auto-generated method stub
-		
+		int k= estado?1:0;
+		clienteMapper.vetar(docu,k);
 	}
 
 	@Override
 	public void agregarItemRentadoACliente(Date date, long docu, Item item, int numdias) throws PersistenceException {
-		// TODO Auto-generated method stub
-		
+		Date k=new Date(date.getDate()+numdias);
+		clienteMapper.agregarItemRentadoACliente((int)docu, item.getId(), date,k);
 	}
 
 	@Override
 	public List<Cliente> loadAll() throws PersistenceException {
-		// TODO Auto-generated method stub
-		return null;
+		return clienteMapper.consultarClientes();
 	}
 
 	@Override
 	public List<ItemRentado> consultarItemsCliente(long idcliente) {
-		// TODO Auto-generated method stub
-		return null;
+		return clienteMapper.consultarItemsCliente(idcliente).getRentados();
 	}
 
 }

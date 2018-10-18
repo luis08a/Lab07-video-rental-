@@ -28,11 +28,11 @@ public class ServiciosAlquilerItemsImpl implements ServiciosAlquiler {
 
    @Override
    public int valorMultaRetrasoxDia(int itemId) throws ExcepcionServiciosAlquiler {
-	   try {
-		return itemDAO.tarifaxDia(itemId);
-	} catch (PersistenceException e) {
-		throw new ExcepcionServiciosAlquiler("Error al cosultar item "+itemId,e);
-	}
+	    try {
+		   return itemDAO.tarifaxDia(itemId);
+	    }catch (PersistenceException e) {
+			throw new ExcepcionServiciosAlquiler("Error al cosultar item "+itemId,e);
+		}
    }
 
    @Override
@@ -72,8 +72,12 @@ public class ServiciosAlquilerItemsImpl implements ServiciosAlquiler {
    }
 
    @Override
-   public List<Item> consultarItemsDisponibles() {
-		return itemDAO.consultarItemsDisponibles();
+   public List<Item> consultarItemsDisponibles() throws ExcepcionServiciosAlquiler {
+		try{
+			return itemDAO.consultarItemsDisponibles();
+		}catch (PersistenceException ex) {
+			throw new ExcepcionServiciosAlquiler("Error al consultar los items ",ex);
+		}
    }
 
    @Override
