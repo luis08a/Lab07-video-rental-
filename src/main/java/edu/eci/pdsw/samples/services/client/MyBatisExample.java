@@ -73,6 +73,14 @@ public class MyBatisExample {
      * @throws ExcepcionServiciosAlquiler 
      */
     public static void main(String args[]) throws SQLException, ExcepcionServiciosAlquiler {
+    	ServiciosAlquiler services = ServiciosAlquilerFactory.getInstance().getServiciosAlquiler();
+    	System.out.println(services.consultarMultaAlquiler(101, Date.valueOf("2017-03-21")));
+        //SqlSessionFactory sessionfact = getSqlSessionFactory();
+        //SqlSession sqlss = sessionfact.openSession();
+        //List<Cliente> cc=cm.consultarClientes();
+        //for(Cliente c:cc) {
+        //	System.out.println(c.toString());
+        //}
     	ServiciosAlquiler sa=ServiciosAlquilerFactory.getInstance().getServiciosAlquiler();
     	Cliente cm=sa.consultarCliente(12345);
         System.out.println(cm.toString());
@@ -97,8 +105,6 @@ public class MyBatisExample {
         sa.vetarCliente(666, true);
         cm=sa.consultarCliente(666);
         System.out.println(cm.isVetado());
-        
-        
         //System.out.println("--------------------------");
         //Cliente cliente=cm.consultarCliente(12345);
         //cm.agregarItemRentadoACliente(idc, idi, fechainicio, fechafin);
@@ -106,9 +112,11 @@ public class MyBatisExample {
         //for(ItemRentado ir: itsr) {
         //	System.out.println(ir.toString());
         //}
+        //Cliente ct=new Cliente("gggg", 666, "31313","momo", "gggg@momo.index");
+        //cm.insertarCliente(ct);
+        //System.out.println("--------------------------");
         //Cliente ct=new Cliente("gggg", 666L, "31313","momo", "gggg@momo.index");
         //cm.insertarCliente(ct);
-        //
         //cm.vetar(12345, estado);
         //cm.agregarItemRentadoACliente(12345, 2137559, , new Date(2018,03,17));
         /*

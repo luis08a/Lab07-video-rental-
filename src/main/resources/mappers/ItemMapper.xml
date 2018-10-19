@@ -40,6 +40,7 @@
 		from
 			VI_ITEMRENTADO as ir join VI_ITEMS as i on ir.ITEMS_id = i.id
 		where i.id = #{idit}
+		limit 1
 	</select>
 	<update id="actualizarTarifaItem">
 		UPDATE VI_ITEMS SET tarifaxdia = #{tarifait}

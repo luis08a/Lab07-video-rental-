@@ -75,9 +75,9 @@ public class MyBATISItemDAO implements ItemDAO{
 	public long consultarMultaAlquiler(int iditem, Date fechaDevolucion) throws PersistenceException {
 		try {
 			Date finRenta = itemMapper.consultarFechafinReta(iditem);
-			if(fechaDevolucion.getTime()-finRenta.getTime()<0) {
+			if(fechaDevolucion.getTime()-finRenta.getTime()>0) {
 				long tarifa = tarifaxDia(iditem);
-				return (fechaDevolucion.getTime()-finRenta.getTime())/86400000*tarifa;
+				return ((fechaDevolucion.getTime()-finRenta.getTime())/86400000)*tarifa;
 			}
 			else {
 				return 0;
