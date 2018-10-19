@@ -62,7 +62,7 @@ public interface ServiciosAlquiler {
    * @throws ExcepcionXX si el identificador no corresponde con un item, o si
    * el mismo ya esta alquilado
    */
-   public abstract void registrarAlquilerCliente(Date date, long docu, Item item, int numdias) throws ExcepcionServiciosAlquiler;
+   public abstract void registrarAlquilerCliente(Date date, long docu, Item item,int numdias) throws ExcepcionServiciosAlquiler;
 
    public abstract void registrarCliente(Cliente p) throws ExcepcionServiciosAlquiler;
 

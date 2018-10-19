@@ -112,7 +112,7 @@ public class ServiciosAlquilerItemsImpl implements ServiciosAlquiler {
 	   try {
 		clienteDAO.agregarItemRentadoACliente(date,docu,item,numdias);
 	} catch (PersistenceException e) {
-		throw new ExcepcionServiciosAlquiler("");
+		throw new ExcepcionServiciosAlquiler("error al agregar item a clinete");
 	}
    }
 
@@ -121,7 +121,7 @@ public class ServiciosAlquilerItemsImpl implements ServiciosAlquiler {
 	   try {
 		clienteDAO.save(c);
 	} catch (PersistenceException e) {
-		throw new ExcepcionServiciosAlquiler("");
+		throw new ExcepcionServiciosAlquiler("registrar cliente flayo",e);
 	}
    }
 
@@ -157,7 +157,7 @@ public class ServiciosAlquilerItemsImpl implements ServiciosAlquiler {
 	   try {
 		clienteDAO.vetar(docu,estado);
 	} catch (PersistenceException e) {
-		throw new ExcepcionServiciosAlquiler("");
+		throw new ExcepcionServiciosAlquiler("",e);
 	}
       
    }

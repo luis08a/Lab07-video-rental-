@@ -86,10 +86,19 @@ public class MyBatisExample {
         for(Cliente c:cc) {
         	System.out.println(c.toString());
         }
-        System.out.println("--------------------------");
+        System.out.println("-------------------------- alquiler");
         TipoItem ti=new TipoItem(2,"Juego");
-        Item item=new Item(ti, 9, "Zelda Breath of the Wild", "Juego nintendo Switch", new Date(1917,04,03), 30000, "Digital	SandBox", 2);
-        sa.registrarAlquilerCliente( new Date(2018,03,15),  12, item, 2);
+        Item item=new Item(ti, 9, "Zelda Breath of the Wild","Juego nintendo Switch",Date.valueOf("1917-04-03"), 30000, "Digital SandBox", "aventura");
+        
+        //sa.registrarAlquilerCliente( Date.valueOf("2018-03-15"),  12345, sa.consultarItem(6565), 2);
+        System.out.println("-------------------------- cliente");
+        Cliente ct=new Cliente("hdpsdfasfsgsdfsd", 666, "fsdf131313131313", "casmpmsdgdgshdp", "modsgsgsgsmoss");
+        //sa.registrarCliente(ct);
+        sa.vetarCliente(666, true);
+        cm=sa.consultarCliente(666);
+        System.out.println(cm.isVetado());
+        
+        
         //System.out.println("--------------------------");
         //Cliente cliente=cm.consultarCliente(12345);
         //cm.agregarItemRentadoACliente(idc, idi, fechainicio, fechafin);

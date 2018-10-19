@@ -6,7 +6,7 @@
 <mapper namespace="edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ClienteMapper">
 	<insert parameterType="map" id="insertarCliente">
   		insert into VI_CLIENTES (documento, nombre,telefono,direccion,email,vetado)
-  		values (#(ct.documento),#(ct.nombre),#(ct.telefono),#(ct.direccion),#(ct.email),0);
+  		values (#{ct.documento},#{ct.nombre},#{ct.telefono},#{ct.direccion},#{ct.email},0);
 	</insert>
 	<select parameterType="map" id="consultarCliente" resultMap="ClienteResult">
 		select
@@ -40,7 +40,7 @@
 	<insert parameterType="map" id="agregarItemRentadoACliente" useGeneratedKeys="true"
     keyProperty="id">
   		insert into VI_ITEMRENTADO (CLIENTES_documento,ITEMS_id,fechainiciorenta,fechafinrenta)
-  		values (#{idc},#{idi},#{fini},#{ffin})
+  		values (#{idc},#{idi},#{fini},#{ffin});
 	</insert>
 	
 	<select parameterType="map" id="consultarClientes" resultMap="ClienteResult">
@@ -72,7 +72,7 @@
 	   left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id ;
 	</select>
     <update parameterType="map" id="vetar">
-    	UPDATE VI_CLIENTES SET vetado=#(estado) WHERE documento=#(doc)
+    	UPDATE VI_CLIENTES SET vetado=#{estado} WHERE documento=#{doc};
     </update>
     <select parameterType="map" id="consultarItemsCliente" resultMap="ClienteResult">
 		select
