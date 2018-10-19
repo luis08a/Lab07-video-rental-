@@ -21,6 +21,6 @@ public interface ClienteDAO {
 
    public List<Cliente> loadAll() throws PersistenceException;
 
-   public List<ItemRentado> consultarItemsCliente(long idcliente);
+   public List<ItemRentado> consultarItemsCliente(long idcliente)throws PersistenceException;
 
 }
