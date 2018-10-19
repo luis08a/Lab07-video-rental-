@@ -73,7 +73,19 @@ public class MyBATISItemDAO implements ItemDAO{
 
 	@Override
 	public long consultarMultaAlquiler(int iditem, Date fechaDevolucion) throws PersistenceException {
-		return itemMapper.consultarFechafinReta(iditem);
+		try {
+			Date finRenta = itemMapper.consultarFechafinReta(iditem);
+			if(fechaDevolucion.getTime()-finRenta.getTime()<0) {
+				long tarifa = tarifaxDia(iditem);
+				return (fechaDevolucion.getTime()-finRenta.getTime())/86400000*tarifa;
+			}
+			else {
+				return 0;
+			}
+		} catch(org.apache.ibatis.exceptions.PersistenceException e){
+			throw new PersistenceException("Error al consultar multa alquiler del item "+iditem,e);
+		}
+		
 	}
 
 	@Override
