@@ -28,19 +28,11 @@ public class ServiciosAlquilerItemsImpl implements ServiciosAlquiler {
 
    @Override
    public int valorMultaRetrasoxDia(int itemId) throws ExcepcionServiciosAlquiler {
-<<<<<<< HEAD
 	    try {
-		   return itemDAO.tarifaxDia(itemId);
+		   return (int)itemDAO.tarifaxDia(itemId);
 	    }catch (PersistenceException e) {
 			throw new ExcepcionServiciosAlquiler("Error al cosultar item "+itemId,e);
 		}
-=======
-	   try {
-		return (int)itemDAO.tarifaxDia(itemId);
-	} catch (PersistenceException e) {
-		throw new ExcepcionServiciosAlquiler("Error al cosultar item "+itemId,e);
-	}
->>>>>>> 64e84d3957c69498c4c2cc150842d30e6e33ea93
    }
 
    @Override
