@@ -34,11 +34,17 @@
 		    ti.descripcion as TIPOITEM_descripcion
 		from VI_ITEMS as i join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id;
 	</select>
+	<select id="consultarFechafinReta" resultType="java.sql.Date">
+		select
+			ir.fechafinrenta
+		from
+			VI_ITEMRENTADO as ir join VI_ITEMS as i on ir.ITEMS_id = i.id
+		where i.id = #{idit}
+	</select>
 	<update id="actualizarTarifaItem">
 		UPDATE VI_ITEMS SET tarifaxdia = #{tarifait}
 			WHERE #{idit}=id
 	</update>
-	
 	<resultMap type='Item' id='ItemResult'>
 		<id property='id' column='ITEM_id' />
 		<result property='nombre' column='ITEM_nombre' />
