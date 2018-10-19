@@ -34,10 +34,6 @@
 		    ti.descripcion as TIPOITEM_descripcion
 		from VI_ITEMS as i join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id;
 	</select>
-	<insert id="insertarItem">
-		insert into VI_ITEMS(id,nombre,descripcion,fechalanzamiento,tarifaxdia,formatorenta,genero,tipo) 
-			values (#{id},#{nombre},#{descripcion},#{fechaLanzamiento},#{tarifaxDia},#{formatoRenta},#{genero},#{tipo}) 
-	</insert>
 	<update id="actualizarTarifaItem">
 		UPDATE VI_ITEMS SET tarifaxdia = #{tarifait}
 			WHERE #{idit}=id

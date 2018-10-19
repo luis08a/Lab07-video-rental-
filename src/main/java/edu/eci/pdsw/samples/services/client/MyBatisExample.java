@@ -36,13 +36,16 @@ import edu.eci.pdsw.samples.entities.Cliente;
 import edu.eci.pdsw.samples.entities.Item;
 import edu.eci.pdsw.samples.entities.ItemRentado;
 import edu.eci.pdsw.samples.entities.TipoItem;
+import edu.eci.pdsw.samples.services.ExcepcionServiciosAlquiler;
+import edu.eci.pdsw.samples.services.ServiciosAlquiler;
+import edu.eci.pdsw.samples.services.ServiciosAlquilerFactory;
 
 /**
  *
  * @author hcadavid
  */
 public class MyBatisExample {
-
+	
     /**
      * Método que construye una fábrica de sesiones de MyBatis a partir del
      * archivo de configuración ubicado en src/main/resources
@@ -67,29 +70,39 @@ public class MyBatisExample {
      * Programa principal de ejempo de uso de MyBATIS
      * @param args
      * @throws SQLException 
+     * @throws ExcepcionServiciosAlquiler 
      */
-    public static void main(String args[]) throws SQLException {
-        SqlSessionFactory sessionfact = getSqlSessionFactory();
-        SqlSession sqlss = sessionfact.openSession();
-        ClienteMapper cm=sqlss.getMapper(ClienteMapper.class);
-        //List<Cliente> cc=cm.consultarClientes();
-        //for(Cliente c:cc) {
-        //	System.out.println(c.toString());
-        //}
+    public static void main(String args[]) throws SQLException, ExcepcionServiciosAlquiler {
+    	ServiciosAlquiler sa=ServiciosAlquilerFactory.getInstance().getServiciosAlquiler();
+    	Cliente cm=sa.consultarCliente(12345);
+        System.out.println(cm.toString());
+        System.out.println("--------------------------");
+        List<ItemRentado> itsr=sa.consultarItemsCliente(12345);
+        for(ItemRentado ir: itsr) {
+            System.out.println(ir.toString());
+        }
+        System.out.println("--------------------------");
+        List<Cliente> cc=sa.consultarClientes();
+        for(Cliente c:cc) {
+        	System.out.println(c.toString());
+        }
+        System.out.println("--------------------------");
+        TipoItem ti=new TipoItem(2,"Juego");
+        Item item=new Item(ti, 9, "Zelda Breath of the Wild", "Juego nintendo Switch", new Date(1917,04,03), 30000, "Digital	SandBox", 2);
+        sa.registrarAlquilerCliente( new Date(2018,03,15),  12, item, 2);
         //System.out.println("--------------------------");
         //Cliente cliente=cm.consultarCliente(12345);
-        //System.out.println(cliente.toString());
         //cm.agregarItemRentadoACliente(idc, idi, fechainicio, fechafin);
-        //List<ItemRentado> itsr=cm.consultarItemsCliente(12345).getRentados();
+        //=cm.consultarItemsCliente(12345).getRentados();
         //for(ItemRentado ir: itsr) {
         //	System.out.println(ir.toString());
         //}
-        Cliente ct=new Cliente("gggg", 666, "31313","momo", "gggg@momo.index");
-        cm.insertarCliente(ct);
-        System.out.println("--------------------------");
+        //Cliente ct=new Cliente("gggg", 666L, "31313","momo", "gggg@momo.index");
+        //cm.insertarCliente(ct);
+        //
         //cm.vetar(12345, estado);
-        //cm.agregarItemRentadoACliente(12345, 2137559, new Date(2018,03,15), new Date(2018,03,17));
-        /*TipoItem ti=new TipoItem(1,"Video");
+        //cm.agregarItemRentadoACliente(12345, 2137559, , new Date(2018,03,17));
+        /*
         Item i=new Item(ti,777,"El cienpies humano","personas anidadas",new Date(2009,8,30),1000,"DVD","familiar");
         //im.insertarItem(i);
         
@@ -102,8 +115,8 @@ public class MyBatisExample {
         }
         System.out.println("--------------------------");
         */
-        sqlss.commit();
-        sqlss.close();
+        //sqlss.commit();
+        //sqlss.close();
     }
 
 

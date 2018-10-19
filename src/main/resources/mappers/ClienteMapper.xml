@@ -6,7 +6,7 @@
 <mapper namespace="edu.eci.pdsw.sampleprj.dao.mybatis.mappers.ClienteMapper">
 	<insert parameterType="map" id="insertarCliente">
   		insert into VI_CLIENTES (documento, nombre,telefono,direccion,email,vetado)
-  		values (666,#{ct.nombre},#{ct.telefono},#{ct.direccion},#(ct.email),#(ct.vetado));
+  		values (#(ct.documento),#(ct.nombre),#(ct.telefono),#(ct.direccion),#(ct.email),0);
 	</insert>
 	<select parameterType="map" id="consultarCliente" resultMap="ClienteResult">
 		select

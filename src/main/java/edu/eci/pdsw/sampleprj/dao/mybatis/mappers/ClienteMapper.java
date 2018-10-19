@@ -11,7 +11,6 @@ public interface ClienteMapper {
     public void insertarCliente(@Param("ct")Cliente ct);
 	public Cliente consultarCliente(@Param("idcli") int id);
 	public Cliente consultarCliente(@Param("idcli") long id);
-    
     public void agregarItemRentadoACliente(@Param("idc") int idc, 
     		@Param("idi") int idi, 
     		@Param("fini") Date fechainicio,
