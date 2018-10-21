@@ -8,6 +8,16 @@ import org.mybatis.guice.datasource.helper.JdbcHelper;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+import edu.eci.pdsw.sampleprj.dao.ClienteDAO;
+import edu.eci.pdsw.sampleprj.dao.ItemDAO;
+import edu.eci.pdsw.sampleprj.dao.TipoItemDAO;
+import edu.eci.pdsw.sampleprj.dao.mybatis.MyBATISClienteDAO;
+import edu.eci.pdsw.sampleprj.dao.mybatis.MyBATISItemDAO;
+import edu.eci.pdsw.sampleprj.dao.mybatis.MyBATISTipoItemDAO;
+import edu.eci.pdsw.samples.services.ServiciosAlquiler;
+import edu.eci.pdsw.samples.services.impl.ServiciosAlquilerItemsImpl;
+import edu.eci.pdsw.samples.services.impl.ServiciosAlquilerItemsStub;
+
 public class GuiceContextListener implements ServletContextListener {
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
@@ -24,8 +34,10 @@ public class GuiceContextListener implements ServletContextListener {
                 setClassPathResource("mybatis-config.xml");
 
                 // TODO Add service class associated to Stub implementation
-                bind(AAA.class).to(YYY.class);
-                bind(BBB.class).to(ZZZ.class);
+                bind(ItemDAO.class).to(MyBATISItemDAO.class);
+                bind(ClienteDAO.class).to(MyBATISClienteDAO.class);
+                bind(TipoItemDAO.class).to(MyBATISTipoItemDAO.class);
+                bind(ServiciosAlquiler.class).to(ServiciosAlquilerItemsStub.class);
             }
         });
 
