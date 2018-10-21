@@ -162,9 +162,12 @@ public class ServiciosAlquilerItemsImpl implements ServiciosAlquiler {
       
    }
 
-@Override
-public List<Item> consultarItemsNoDevueltos(long docu, Date date) throws ExcepcionServiciosAlquiler {
-	// TODO Auto-generated method stub
-	return null;
-}
+	@Override
+	public List<Item> consultarItemsNoDevueltos(long docu, Date date) throws ExcepcionServiciosAlquiler {
+		try {
+			return clienteDAO.consultarItemsNoDevueltos(docu, date);
+		} catch (PersistenceException e) {
+			throw new ExcepcionServiciosAlquiler("");
+		}
+	}
 }

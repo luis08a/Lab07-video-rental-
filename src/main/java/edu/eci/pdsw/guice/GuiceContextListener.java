@@ -15,7 +15,6 @@ import edu.eci.pdsw.sampleprj.dao.mybatis.MyBATISClienteDAO;
 import edu.eci.pdsw.sampleprj.dao.mybatis.MyBATISItemDAO;
 import edu.eci.pdsw.sampleprj.dao.mybatis.MyBATISTipoItemDAO;
 import edu.eci.pdsw.samples.services.ServiciosAlquiler;
-import edu.eci.pdsw.samples.services.impl.ServiciosAlquilerItemsImpl;
 import edu.eci.pdsw.samples.services.impl.ServiciosAlquilerItemsStub;
 
 public class GuiceContextListener implements ServletContextListener {
@@ -34,10 +33,10 @@ public class GuiceContextListener implements ServletContextListener {
                 setClassPathResource("mybatis-config.xml");
 
                 // TODO Add service class associated to Stub implementation
-                bind(ItemDAO.class).to(MyBATISItemDAO.class);
-                bind(ClienteDAO.class).to(MyBATISClienteDAO.class);
-                bind(TipoItemDAO.class).to(MyBATISTipoItemDAO.class);
                 bind(ServiciosAlquiler.class).to(ServiciosAlquilerItemsStub.class);
+                bind(ClienteDAO.class).to(MyBATISClienteDAO.class);
+                bind(ItemDAO.class).to(MyBATISItemDAO.class);
+                bind(TipoItemDAO.class).to(MyBATISTipoItemDAO.class);
             }
         });
 
