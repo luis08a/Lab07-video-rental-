@@ -35,8 +35,11 @@ public class MyBATISTipoItemDAO implements TipoItemDAO{
 
 	@Override
 	public List<TipoItem> loadAll() throws PersistenceException {
-		// TODO Auto-generated method stub
-		return null;
+		try{
+			return tiMapper.consultarTodosLosTiposItem();
+		}catch(org.apache.ibatis.exceptions.PersistenceException e){
+			throw new PersistenceException("Error al los tipos item",e);
+		}
 	}
 
 }
