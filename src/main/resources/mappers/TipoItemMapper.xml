@@ -8,19 +8,4 @@
 		<id property='id' column='TIPOITEM_id' />
 		<result property='descripcion' column='TIPOITEM_descripcion' />
 	</resultMap>
-	
-	<select id="consultarTipoItem" resultMap="TipoItem">
-		SELECT
-			ti.id,
-			ti.descripcion
-		FROM VI_TIPOITEM as ti
-		WHERE #{id}=ti.id
-	</select>
-	
-	<select id="" resultMap="TipoItem">
-		SELECT
-			ti.id,
-			ti.descripcion
-		FROM VI_TIPOITEM as ti
-	</select>
 </mapper>
