@@ -23,4 +23,6 @@ public interface ClienteDAO {
 
    public List<ItemRentado> consultarItemsCliente(long idcliente)throws PersistenceException;
 
+   public List<Item> consultarItemsNoDevueltos(long docu, Date date);
+
 }

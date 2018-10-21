@@ -57,4 +57,9 @@ public class MyBATISClienteDAO implements ClienteDAO{
 		return clienteMapper.consultarItemsCliente(idcliente).getRentados();
 	}
 
+	@Override
+	public List<Item> consultarItemsNoDevueltos(long docu, Date date) {
+		return null;
+	}
+
 }

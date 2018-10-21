@@ -12,7 +12,7 @@
 	<h1>Registro de alquileres</h1>
 	<p:dataTable id="Register_table" var="item" value="#{AlquilerItemsBean.itemsSinRegresar}">
 		<p:column headerText="Nombre item">
-			<h:outputText value="#{user.login}" />
+			<h:outputText value="#{item.nombre}" />
 		</p:column>
 		<p:column headerText="Valor multa">
 			<h:outputText value="#{user.login}" />
@@ -25,14 +25,16 @@
 	        </f:facet>
 	 
 	        <p:outputLabel for="item_code" value="Codigo:" />
-	        <p:inputText id="item_code" value="#{userView.firstname}" required="true" requiredMessage="Codigo requerido." />
+	        <p:inputText id="item_code" value="#{AlquilerItemsBean.codigoItem}" required="true" requiredMessage="Codigo requerido." />
 	 
 	        <p:outputLabel for="days" value="Dias:" />
-	        <p:inputText id="days" value="#{userView.lastname}" required="true" requiredMessage="Dias requeridos." />
+	        <p:inputText id="days" value="#{AlquilerItemsBean.diasARentar}" required="true" requiredMessage="Dias requeridos." />
+	        
+	         <p:outputLabel value="#{AlquilerItemsBean.costoAlquiler}" id="costo" update="costo" />
 	    </h:panelGrid>
 
 	    <h:panelGrid columns="1" cellpadding="5">
-	        <p:commandButton value="Registrar" id="btnRegister" actionListener="#{userView.save}" outcome="registrocliente" />
+	        <p:commandButton value="Registrar" id="btnRegister" actionListener="#AlquilerItemsBean.registrarItemACliente}" outcome="registrocliente" />
 	    </h:panelGrid>
 	</h:form>
 </h:body>
