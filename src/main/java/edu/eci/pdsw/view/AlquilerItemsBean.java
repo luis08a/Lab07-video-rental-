@@ -1,7 +1,11 @@
 package edu.eci.pdsw.view;
 
 import com.google.inject.Inject;
+
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.sql.Date;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -68,7 +72,16 @@ public class AlquilerItemsBean extends BasePageBean{
 	}
 	public List<ItemRentado> getItems() throws Exception{
 		try {
-			return sa.consultarItemsCliente(idcl);
+			List<ItemRentado> rentados=sa.consultarItemsCliente(idcl);
+			List<ItemRentado> NoDevueltos= new ArrayList<ItemRentado>();
+			Date currentDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+			for(ItemRentado ir: rentados) {
+				if(ir.getFechafinrenta().getTime()<currentDate.getTime()) {
+					NoDevueltos.add(ir);
+				}
+			}
+			return NoDevueltos;
+			
 		} catch (ExcepcionServiciosAlquiler e) {
 			throw e;
 		}
