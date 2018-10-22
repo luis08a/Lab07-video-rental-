@@ -2,8 +2,13 @@ package edu.eci.pdsw.view;
 
 import com.google.inject.Inject;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.Calendar;
+=======
+import java.sql.Date;
+import java.time.LocalDate;
+>>>>>>> 3a1084c80ea1b7290103f5d63dbe6282ee69cbb6
 import java.util.List;
 import java.sql.Date;
 
@@ -11,9 +16,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
+import edu.eci.pdsw.samples.entities.*;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosAlquiler;
 import edu.eci.pdsw.samples.services.ServiciosAlquiler;
-import edu.eci.pdsw.samples.entities.*;
 
 @SessionScoped
 @SuppressWarnings("deprecation")
@@ -72,6 +77,7 @@ public class AlquilerItemsBean extends BasePageBean{
 	}
 	public List<ItemRentado> getItems() throws Exception{
 		try {
+<<<<<<< HEAD
 			List<ItemRentado> rentados=sa.consultarItemsCliente(idcl);
 			List<ItemRentado> NoDevueltos= new ArrayList<ItemRentado>();
 			Date currentDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
@@ -81,12 +87,22 @@ public class AlquilerItemsBean extends BasePageBean{
 				}
 			}
 			return NoDevueltos;
+=======
+			return sa.consultarItemsCliente(idcl);
+>>>>>>> 3a1084c80ea1b7290103f5d63dbe6282ee69cbb6
 			
 		} catch (ExcepcionServiciosAlquiler e) {
 			throw e;
 		}
 	}
-	public void registrarItemACliente(){
-		
+	public void registrarItem(int item,int dias) throws Exception{
+		LocalDate localDate = LocalDate.now();
+		try {
+			Item it=sa.consultarItem(item);
+			sa.registrarAlquilerCliente(Date.valueOf(localDate), idcl, it, dias);;
+			
+		} catch (ExcepcionServiciosAlquiler e) {
+			throw e;
+		}
 	}
 }
