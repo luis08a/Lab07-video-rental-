@@ -27,6 +27,9 @@
 		<p:column headerText="vetado">
 			<h:outputText value="#{client.vetado}" />
 		</p:column>
+		<p:column headerText="alquiler">
+			<p:button outcome="registroalquiler?idcl=#{client.documento}" value="Consultar" />
+		</p:column>
 	</p:dataTable>
 	<h3>agregar usuario</h3>
 	<h:form id="c_form">

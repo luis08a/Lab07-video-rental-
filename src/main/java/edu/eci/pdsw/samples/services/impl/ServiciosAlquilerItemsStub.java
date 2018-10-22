@@ -35,7 +35,7 @@ public class ServiciosAlquilerItemsStub implements ServiciosAlquiler {
        itemsrentados = new HashMap<>();
        tipositems = new HashMap<>();
        mapaPrestamosPorIdCliente=new HashMap<>();
-       //poblar();
+       poblar();
    }
 
    @Override
@@ -220,9 +220,9 @@ public class ServiciosAlquilerItemsStub implements ServiciosAlquiler {
        itemsDisponibles.put(5, i5);
        itemsDisponibles.put(6, i6);
 
-       ItemRentado ir1=new ItemRentado(0,i1, java.sql.Date.valueOf("2017-01-01"), java.sql.Date.valueOf("2017-03-12"));
-       ItemRentado ir2=new ItemRentado(0,i2, java.sql.Date.valueOf("2017-01-04"), java.sql.Date.valueOf("2017-04-7"));
-       ItemRentado ir3=new ItemRentado(0,i1, java.sql.Date.valueOf("2017-01-07"), java.sql.Date.valueOf("2017-07-12"));
+       ItemRentado ir1=new ItemRentado(1026585664,i1, java.sql.Date.valueOf("2017-01-01"), java.sql.Date.valueOf("2017-03-12"));
+       ItemRentado ir2=new ItemRentado(1026585663,i2, java.sql.Date.valueOf("2017-01-04"), java.sql.Date.valueOf("2017-04-7"));
+       ItemRentado ir3=new ItemRentado(1026585669,i3, java.sql.Date.valueOf("2017-01-07"), java.sql.Date.valueOf("2017-07-12"));
 
        ArrayList<ItemRentado> list1 = new ArrayList<>();
        list1.add(ir1);

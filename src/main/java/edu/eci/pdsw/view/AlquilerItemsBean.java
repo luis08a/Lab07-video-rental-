@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import edu.eci.pdsw.samples.services.ExcepcionServiciosAlquiler;
@@ -21,11 +22,25 @@ public class AlquilerItemsBean extends BasePageBean{
 	private int codigoItem;
 	private int diasARentar;
 	
+	private long idcl;
+
 	public void setCodigoItem(int codigo) {
 		codigoItem=codigo;
 	}
 	public void setDiasARentar(int dias) {
 		diasARentar=dias;
+	}
+	public void setIdcl(long id) {
+		idcl=id;
+	}
+	public long getIdcl() {
+		return idcl;
+	}
+	public int getCodigoItem() {
+		return codigoItem;
+	}
+	public int getDiasARentar() {
+		return diasARentar;
 	}
 	
 	public List<Cliente> getClientes() throws Exception {
@@ -51,6 +66,14 @@ public class AlquilerItemsBean extends BasePageBean{
 			throw e;
 		}
 	}
+	public List<ItemRentado> getItems() throws Exception{
+		try {
+			return sa.consultarItemsCliente(idcl);
+		} catch (ExcepcionServiciosAlquiler e) {
+			throw e;
+		}
+	}
 	public void registrarItemACliente(){
+		
 	}
 }
