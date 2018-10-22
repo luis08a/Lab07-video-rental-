@@ -1,15 +1,18 @@
 package edu.eci.pdsw.view;
 
 import com.google.inject.Inject;
+
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
+import edu.eci.pdsw.samples.entities.*;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosAlquiler;
 import edu.eci.pdsw.samples.services.ServiciosAlquiler;
-import edu.eci.pdsw.samples.entities.*;
 
 @SessionScoped
 @SuppressWarnings("deprecation")
@@ -69,11 +72,19 @@ public class AlquilerItemsBean extends BasePageBean{
 	public List<ItemRentado> getItems() throws Exception{
 		try {
 			return sa.consultarItemsCliente(idcl);
+			
 		} catch (ExcepcionServiciosAlquiler e) {
 			throw e;
 		}
 	}
-	public void registrarItemACliente(){
-		
+	public void registrarItem(int item,int dias) throws Exception{
+		LocalDate localDate = LocalDate.now();
+		try {
+			Item it=sa.consultarItem(item);
+			sa.registrarAlquilerCliente(Date.valueOf(localDate), idcl, it, dias);;
+			
+		} catch (ExcepcionServiciosAlquiler e) {
+			throw e;
+		}
 	}
 }

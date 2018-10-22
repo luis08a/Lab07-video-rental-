@@ -12,15 +12,19 @@
 	<f:metadata>
 	    <f:viewParam name="idcl" value="#{alquilerBean.idcl}" />
 	</f:metadata>
-	<h1>Registro de alquileres</h1>
-	<p:dataTable id="Register_table" var="it" value="#{alquilerBean.items}">
+	<h1>Alquiler</h1>
+	<p:dataTable id="r_table" var="it" value="#{alquilerBean.items}">
 		<p:column headerText="Nombre item">
-			<h:outputText value="#{it.item.toString()}" />
+			<h:outputText value="#{it.toString()}" />
 		</p:column>
-		<p:column headerText="Nombre item">
+		<p:column headerText="Documento">
 			<h:outputText value="#{it.id}" />
 		</p:column>
 	</p:dataTable>
-	
+	<h:form id="r_form">
+		<h1>item </h1><p:inputText id="item" binding="#{item}" /><br/>
+		<h1>dias </h1><p:inputText id="dias" binding="#{dias}" /><br/>
+		<p:commandButton value="insertar" update="r_table" actionListener="#{alquilerBean.registrarItem(item.value,dias.value)}" />
+	</h:form>
 </h:body>
 </html>
