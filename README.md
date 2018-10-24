@@ -1,4 +1,7 @@
 ### Escuela Colombiana de Ingeniería
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c40fc15e49dc47f6b5295481b90173b3)](https://app.codacy.com/app/luis08a/Lab07-video-rental-?utm_source=github.com&utm_medium=referral&utm_content=luis08a/Lab07-video-rental-&utm_campaign=Badge_Grade_Dashboard)
+
 ### Procesos de desarrollo de Software - PDSW
 #### Tecnologías de persistencia - Frameworks de Persistencia - Introducción a MyBatis
 
