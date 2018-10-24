@@ -12,19 +12,32 @@
 	<f:metadata>
 	    <f:viewParam name="idcl" value="#{alquilerBean.idcl}" />
 	</f:metadata>
-	<h1>Alquiler</h1>
+	<h1>Registro alquiler de cliente #{alquilerBean.idcl}</h1>
 	<p:dataTable id="r_table" var="it" value="#{alquilerBean.items}">
 		<p:column headerText="Nombre item">
-			<h:outputText value="#{it.toString()}" />
+			<h:outputText value="#{it.item.nombre}" />
+		</p:column>
+		<p:column headerText="ID item">
+			<h:outputText value="#{it.item.id}" />
 		</p:column>
 		<p:column headerText="Documento">
 			<h:outputText value="#{it.id}" />
 		</p:column>
+		<p:column headerText="Fecha inicio renta">
+			<h:outputText value="#{it.fechainiciorenta}" />
+		</p:column>
+		<p:column headerText="Feacha fin renta">
+			<h:outputText value="#{it.fechafinrenta}" />
+		</p:column>
+		<p:column headerText="Multa">
+			<h:outputText value="#{alquilerBean.consultarMulta(it.item.id)}" />
+		</p:column>	
 	</p:dataTable>
+	<h1>Rentar Item</h1>
 	<h:form id="r_form">
-		<h1>item </h1><p:inputText id="item" binding="#{item}" /><br/>
-		<h1>dias </h1><p:inputText id="dias" binding="#{dias}" /><br/>
-		<p:commandButton value="insertar" update="r_table" actionListener="#{alquilerBean.registrarItem(item.value,dias.value)}" />
+		<h2>item </h2><p:inputText id="item" binding="#{item}" /><br/>
+		<h2>dias </h2><p:inputText id="dias" binding="#{dias}" /><br/>
+		<p:commandButton value="Rentar" update="r_table" actionListener="#{alquilerBean.registrarItem(item.value,dias.value)}" />
 	</h:form>
 </h:body>
 </html>
